@@ -1,0 +1,74 @@
+/**
+ * Old version of Irc::[parseIncomingRaw:private] method.
+ * Was replaced because in cases where there is no 'middle' part (eg. source)
+ * It would fail getting the right message. In for example a JOIN message from
+ * the server, there is no 'middle' part.
+ * Has been replaced by one that fully parsed according to "RFC 1459: Internet Relay Chat Protocol".
+ *
+ * @archived 2011-04-14 by Krinkle
+ */
+
+	private function parseIncomingRaw( $rawline ) {
+
+		$parts = explode( ' ', $rawline, 4 );
+		$parsed = array(
+			'rawline' => $rawline,
+
+			// Basic parts
+			'sender' => null,
+			'type' => 'UNKNOWN',
+			'source' => null,
+			'message' => null,
+
+			// More advanced parts
+			'senderType' => null, // 'server' or 'user'
+			'senderNick' => null,
+			'senderId' => null,
+			'senderHostname' => null,
+		);	
+
+		/* Basic parts */
+
+		// Senders like:
+		// - ":Krinkle!~Krinkle@wikimedia/Krinkle" (hostname cloak)
+		// - ":Foobar!~Foobar@cm1234.dynamic.ziggo.nl" (unregistered, isp hostname)
+		// - ":Foobar!123ab01a@gateway/web/freenode/ip.80.100.192.168" (proxy)
+		// - ":wolfe.freenode.net" (The Server)
+		// Nickname!*@hostname
+		if ( isset( $parts[0] ) && substr( $parts[0], 0, 1 ) == ':' ) {
+			$parsed['sender'] = substr( $parts[0], 1 );
+		}
+
+		// Type
+		if ( isset( $parts[1] ) ) {
+			$parsed['type'] = $parts[1];
+		}
+
+		// Source
+		if ( isset( $parts[2] ) ) {
+			$parsed['source'] = $parts[2];
+		}
+
+		// Message
+		if ( isset( $parts[3] ) && substr( $parts[3], 0, 1 ) == ':' ) {
+			$parsed['message'] = substr( $parts[3], 1 );
+		}
+
+		/* More advanced parts */
+
+		// Sender
+		preg_match( "/^:(.*)!(.*)@(.*)/", $parts[0], $m );
+		if ( isset( $m[1] ) && isset( $m[2] ) && isset( $m[2] ) ) {
+			// Is this The Server or a user ?
+			$parsed['senderType'] = 'user';
+			$parsed['senderNick'] = $m[1];
+			$parsed['senderId'] = $m[2];
+			$parsed['senderHostname'] = $m[3];
+		} else {
+			$parsed['senderType'] = 'server';
+			$parsed['senderNick'] = $parsed['sender'];
+		}
+		
+		
+		return $parsed;	
+	}

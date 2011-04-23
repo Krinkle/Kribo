@@ -1,0 +1,106 @@
+= Flow hooks =
+
+== init ==
+args( KriboMain $KriboMain, KriboConfig $KriboConfig )
+@position: Directly after $KriboMain is constructed.
+
+== onReceive ==
+args( array $parsed, KriboIrc $this )
+@position: Top (before other actions)
+
+== writeRaw ==
+args( $rawline, KriboIrc $this )
+@position: Top (before other actions)
+
+== sendPong ==
+args( $pingData, KriboIrc $this )
+@position: Top (before other actions)
+@return: If false, will abort the action
+
+== sendPrivmsg ==
+args( $msg, $target, KriboIrc $this )
+@position: Top (before other actions)
+@return: If false, will abort the action
+
+== sendNotice ==
+args( $msg, $target, KriboIrc $this )
+@position: Top (before other actions)
+@return: If false, will abort the action
+
+== beforeSendNick ==
+args( $newNick, KriboIrc $this )
+
+== afterSendJoin ==
+args( $channel, KriboIrc $this )
+
+== beforeSendPart ==
+args( $channel, KriboIrc $this )
+
+== beforeSendQuit ==
+args( $msg, KriboIrc $this )
+
+
+
+= Premade registries for common hooks =
+
+== commandsRegistry ==
+$KriboConfig->commandsRegistry['commandname'] = array( .. );
+
+// Example
+$KriboConfig->commandRegistry['date'] = array(
+
+	'prefix' => true,
+	/**
+	 * Prefix
+	 *
+	 * Prefix overrides $KriboConfig->commandPrefixDefault if it's a string.
+	 * If set to true (or other non-string values) the default (commandPrefix) will be used
+	 * if prefix is "!", this means the callback will be called
+	 * when "!date" is said in the channel.
+	 *
+	 * $1: $KriboConfig->userChatName
+	 * $2: $KriboConfig->userAuthID
+	 * $3: $irc->[private]currentNick
+	 */
+
+
+	'callback' => array( 'KriboCmdCore', 'cmdDate' ),
+	/**
+	 * Callback function
+	 *
+	 * This value should be compatible with call_user_func_array()
+	 * Called with first argument $data and the second argument
+	 * the instance of KriboIrc.
+	 *
+	 * Example: "!date Ymd" is said by Foobar in #test
+	 * $data = array(
+	 *   'parsedCommand' => array(
+	 *     'value' => "Ymd",
+	 *     'parts' => array( "Ymd" ),
+	 *   ),
+	 *   'parsedLine' => array( .. ),
+	 * );
+	 *
+	 * Example: "!date Ymd 2001" is said by Foobar as notice in private chat
+	 * $data = array(
+	 *   'parsedCommand' => array(
+	 *     'value' => "Ymd 2001",
+	 *     'parts' => array( "Ymd", "2001" ),
+	 *   ),
+	 *   'parsedLine' => array( .. ),
+	 * );
+	 */
+
+	'sendResponse' => KRIBO_CMD_DEFAULT,
+	/**
+	 * Send response
+	 *
+	 * What to do with the return value of the callback function:
+	 * KRIBO_CMD_RE_DEFAULT: Do whatever $KriboConfig->commandResponseDefault is set to.
+	 * KRIBO_CMD_RE_CHANNEL: Send the message to the channel.
+	 * KRIBO_CMD_RE_CHANNEL_AT: Send the message to the channel, prefixed with "user: ".
+	 * KRIBO_CMD_RE_PRIVATE: Send the message in private chat to user.
+	 * KRIBO_CMD_RE_PRIVATE_AT: Send the message in private chat to user, prefixed with "user: ".
+	 * KRIBO_CMD_RE_IGNORE: Ignore the message, the callback takes care of everything.
+	 */
+);

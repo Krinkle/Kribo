@@ -1,0 +1,77 @@
+=============================================================================
+=                                                                           =
+=                                   KRIBO                                   =
+=                                                                           =
+=                            [ Krinkle IRC Bot ]                            =
+=                                                                           =
+=                                  v0.1-svn                                 =
+=                                                                           =
+=============================================================================
+
+= Read me =
+
+== Introduction ==
+Kribo is an open-source IRC bot written in PHP. It is written with extendability
+in mind and as such is very easy to extend to your needs.
+
+Be it custom functionality of the bot (executing commands to a server),
+or simple commands like "!date", or to log a transcript of the channels, you can
+do it with Kribo.
+
+Check out http://toolserver.org/~krinkle/Kribo/ for more information.
+
+=== Requirements ==
+* PHP: 5.3.2+
+* Server access: Shell
+* Server permission: PHP may not be in safe mode and socket connections must
+  be allowed from your account and from PHP.
+
+=== Installation ==
+1. Extract the .zip into a folder
+2. Go through LocalConfig.php
+3. Change your current working directory to this folder end execute "php Init.php"
+
+== FAQ ==
+1. Where can I download Kribo ?
+> You can download a .zip from the main website:
+> http://toolserver.org/~krinkle/Kribo/
+>
+> Or get it from SVN.
+> Current version:
+> $ svn checkout http://svn.toolserver.org/svnroot/krinkle/branch/Kribo/Kribo_0.1/
+>
+> For the adventurous:
+> $ svn checkout http://svn.toolserver.org/svnroot/krinkle/trunk/Kribo/
+
+2. How do I install Kribo ?
+> Check #Installation.
+
+3. How do I start Kribo ?
+> Check #Installation (step 3).
+
+4. Where should I report X or request Y ?
+> If you encounter any problem, have feedback, suggestions, patches, feature
+> requests etc. please enter them in Toolserver JIRA (if you have an account):
+> https://jira.toolserver.org/browse/KRINKLE under "Create issue" and select
+> "Kribo" as as the component in the submission form.
+> 
+> Alternatively e-mail it (check #Contact). Be sure to include [Kribo] in
+> the subject!
+
+5. Under what license is Kribo available ?
+> Creative Commons Attribution 3.0 Unported
+
+6. May I redistribute this package ?
+> Yes.
+
+7. May I modify this package ? 
+> Yes.
+
+8. Where do I get more answers ?
+> Check out the main website:
+> http://toolserver.org/~krinkle/Kribo/
+
+== Contact ==
+krinklemail@gmail.com
+
+== License ==
