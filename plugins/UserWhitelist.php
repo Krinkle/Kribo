@@ -1,0 +1,3 @@
+<?php
+
+$KriboConfig->userWhitelist = array();
