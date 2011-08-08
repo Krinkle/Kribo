@@ -6,7 +6,7 @@
  * Copyright 2011 Krinkle <krinklemail@gmail.com>
  *
  * This file is licensed under
- * the Creative Commons Attribution 3.0 Unported License 
+ * the Creative Commons Attribution 3.0 Unported License
  * <http://creativecommons.org/licenses/by/3.0/>
  *
  * @package Kribo

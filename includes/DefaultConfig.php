@@ -19,7 +19,7 @@ $KriboConfig = new KriboConfig();
  * Meta
  * -------------------------------------------------
  */
-$KriboConfig->version = '0.1-alpha';
+$KriboConfig->version = '0.1.1-alpha';
 
 
 /**
