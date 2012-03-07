@@ -127,10 +127,12 @@ class KriboIrc {
 		$this->sock = null;
 	}
 
+	/**
+	 * @todo FIXME: Sanatize these $conf values (may not contain spaces for example)
+	 */
 	private function identify(){
 		$conf = $this->conf;
 
-		// @TODO: Sanatize these (may not contain spaces for example)
 
 		// "USER identifier hostname server :realname"
 		$realname = $this->getRealName();

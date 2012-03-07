@@ -6,6 +6,7 @@
  * DO *NOT* EDIT ANYTHING HERE !!
  * OVERRIDE IN LocalConfig.php INSTEAD.
  *
+ * Documentation can be found at https://wiki.toolserver.org/view/Kribo#Configuration
  */
 
 /**
@@ -33,24 +34,25 @@ $KriboConfig->autoJoinChannels = array();
 
 
 /**
- * Logging and debugging
+ * Logging and debugging (not used yet)
  * -------------------------------------------------
  */
+
 // Send to these channels
-$KriboConfig->debugChannels = array();
-$KriboConfig->logChannels = array();
+#$KriboConfig->debugChannels = array();
+#$KriboConfig->logChannels = array();
 
 // Send to STOUT (echo)
-$KriboConfig->debugToConsole = true;
-$KriboConfig->logToConsole = true;
+#$KriboConfig->debugToConsole = true;
+#$KriboConfig->logToConsole = true;
 
 // Append to a file (set to an absolute filepath)
-$KriboConfig->debugToFile = null;
-$KriboConfig->logToFile = null;
+#$KriboConfig->debugToFile = null;
+#$KriboConfig->logToFile = null;
 
 // If debugToFile is used, should it be cleared
 // when the bot starts ?
-$KriboConfig->debugToFileClearStart = true;
+#$KriboConfig->debugToFileClearStart = true;
 
 
 /**
@@ -58,9 +60,11 @@ $KriboConfig->debugToFileClearStart = true;
  * -------------------------------------------------
  */
 $KriboConfig->userChatName = 'Kribo';
-$KriboConfig->userAltNamePattern = '$1_'; // $1: userChatName
 
-// $1 will be replaced with kcVersion in initialization
+// $1: $KriboConfig->userChatName
+$KriboConfig->userAltNamePattern = '$1_';
+
+// $1: $KriboConfig->version
 $KriboConfig->userRealName = 'KrinkleIRCBot Package $1';
 
 
@@ -68,13 +72,22 @@ $KriboConfig->userRealName = 'KrinkleIRCBot Package $1';
  * Authentication
  * -------------------------------------------------
  *
- * If the next fou are not null,
- * AuthService will be PRIVMSG'ed directly
- * after the connection is established (before channels are joined)
+ * If all of the next four are not null, then the bot will
+ * PRIVMSG userAuthService directly after the connection is established
+ * (before channels are joined), with the userAuthPattern.
+ *
+ * The default settings are optimized for the "NickServ" service as found
+ * on many servers (such as Freenode). If you're using that, then only 
+ * userAuthID and userAuthPassword have to be set in LocalConfig.
  */
-$KriboConfig->userAuthService = 'NickServ'; // Nickname of the authservice on the network
-$KriboConfig->userAuthPattern = 'IDENTIFY $1 $2'; // $1: AuthID, $1: AuthPassword
-$KriboConfig->userAuthID = null; // Username of the account with the AuthService
+// Nickname of the authservice on serverHost
+$KriboConfig->userAuthService = 'NickServ';
+
+// $1: userAuthID, $2: userAuthPassword
+$KriboConfig->userAuthPattern = 'IDENTIFY $1 $2';
+
+// Username of the account with the AuthService, may be equal to userChatName
+$KriboConfig->userAuthID = null;
 $KriboConfig->userAuthPassword = null;
 
 
@@ -85,7 +98,7 @@ $KriboConfig->userAuthPassword = null;
 /**
  * The default listener for commands
  * Individual commands may override this
- * $1: userChatName, $2: AuthID, $3: current nickname
+ * $1: userChatName, $2: userAuthID, $3: current nickname
  * Example values:
  * - "!" (!foo)
  * - "@" (@foo)
