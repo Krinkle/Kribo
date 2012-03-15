@@ -134,6 +134,12 @@ $KriboConfig->commandRegistry['quit'] = array(
 
 
 /**
+ * Whitelist
+ * -------------------------------------------------
+ */
+$KriboConfig->userWhitelist = array();
+
+/**
  * Hooks
  * -------------------------------------------------
  */

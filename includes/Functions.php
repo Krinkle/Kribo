@@ -33,7 +33,5 @@ function kfDie(){
  * - "!empty($v)" returns false for '0'
  */
 function kfStrHasLen( $var = null ) {
-
 	return is_string( $var ) && ( strlen( $var ) > 0 );
-
 }

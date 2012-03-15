@@ -46,10 +46,14 @@ $KriboConfig->hookRegistry['afterSendJoin'][] = 'KriboCoreHooks::helloOnJoin';
 
 
 /**
+ * Whitelist
+ * -------------------------------------------------
+ */
+#$KriboConfig->userWhitelist = array( 'yourgroupcloak/JohnDoe' );
+
+
+/**
  * Plugins
  * -------------------------------------------------
  */
-require_once( __DIR__ . '/plugins/UserWhitelist.php' );
-
-// Whitelist:
-#$KriboConfig->userWhitelist = array( 'yourgroupcloak/JohnDoe' );
+# Here be plugins!
