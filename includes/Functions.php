@@ -35,3 +35,20 @@ function kfDie(){
 function kfStrHasLen( $var = null ) {
 	return is_string( $var ) && ( strlen( $var ) > 0 );
 }
+
+/**
+ * @param $data array: Data array with an irc response, as given by Kribo to the
+ * command hook handlers.  
+ */
+function kfIsIrcDataSenderTrusted( $data ) {
+	global $KriboConfig;
+
+	// Check is user is whitelisted
+	if ( isset( $KriboConfig->userWhitelist )
+		&& is_array( $KriboConfig->userWhitelist )
+		&& in_array( $data['parsedLine']['senderHost'], $KriboConfig->userWhitelist ) ) {
+		return true;
+	}
+
+	return false;
+}

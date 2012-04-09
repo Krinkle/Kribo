@@ -35,10 +35,8 @@ class KriboCoreCommands extends staticClass {
 		global $KriboConfig;
 
 		// Check is user is whitelisted
-		if ( !isset( $KriboConfig->userWhitelist )
-			|| !is_array( $KriboConfig->userWhitelist )
-			|| !in_array( $data['parsedLine']['senderHost'], $KriboConfig->userWhitelist ) ) {
-			//$irc->sendNotice( "You need to be on the whitelist for this command." );
+		if ( !kfIsIrcDataSenderTrusted( $data ) ) {
+			$irc->sendNotice( "The quit command is restricted to users on the whitelist.", $data["parsedLine"]['senderNick'] );
 			return false;
 		}
 
