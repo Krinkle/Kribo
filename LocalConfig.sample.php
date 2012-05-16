@@ -1,7 +1,6 @@
 <?php
 /**
- * LocalConfig.php contains your personal
- * configuration for the bot.
+ * LocalConfig.php contains your personal configuration for the bot.
  */
 
 
@@ -56,3 +55,5 @@ $KriboConfig->hookRegistry['afterSendJoin'][] = 'KriboCoreHooks::helloOnJoin';
  * -------------------------------------------------
  */
 # Here be plugins!
+// require_once( $KriboDir . '/plugins/FooBar/FooBar.php' );
+
