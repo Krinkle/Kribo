@@ -1,24 +1,13 @@
 <?php
 /**
- *
- * Created on April 13, 2011
- *
- * Copyright 2011 Krinkle <krinklemail@gmail.com>
- *
- * This file is licensed under
- * the Creative Commons Attribution 3.0 Unported License 
- * <http://creativecommons.org/licenses/by/3.0/>
- *
- * @package Kribo
- */
-
-/**
  * This file contains the irc class.
  * KriboIrc is the heart of the bot that deals with
- * all interaction from and to the irc server.
+ * all interaction from and to the irc server..
+ *
+ * @author Timo Tijhof, 2011
+ * @since 0.1
+ * @package Kribo
  */
-
-
 class KriboIrc {
 
 	/* References to important instances */

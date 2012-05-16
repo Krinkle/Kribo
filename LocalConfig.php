@@ -1,5 +1,4 @@
 <?php
-
 /**
  * LocalConfig.php contains your personal
  * configuration for the bot.

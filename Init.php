@@ -1,20 +1,11 @@
 <?php
 /**
- *
- * Created on April 13, 2011
- *
- * Copyright 2011 Krinkle <krinklemail@gmail.com>
- *
- * This file is licensed under
- * the Creative Commons Attribution 3.0 Unported License
- * <http://creativecommons.org/licenses/by/3.0/>
- *
- * @package Kribo
- */
-
-/**
  * This file initializes the Kribo application.
  * This is the only valid point of entry.
+ *
+ * @author Timo Tijhof, 2011
+ * @since 0.1
+ * @package Kribo
  */
 
 /**
@@ -23,6 +14,12 @@
 error_reporting( -1 );
 ini_set( 'display_errors', 1 );
 date_default_timezone_set( 'UTC' );
+
+// Minimum PHP version
+if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.3.2' ) < 0 ) {
+	echo "<b>Kribo Fatal:</b> Kribo requires at least PHP 5.3.2\n";
+	exit;
+}
 
 /**
  * Load

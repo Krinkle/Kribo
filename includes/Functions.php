@@ -1,21 +1,11 @@
 <?php
 /**
+ * This file declares all global functions in Kribo.
  *
- * Created on April 13, 2011
- *
- * Copyright 2011 Krinkle <krinklemail@gmail.com>
- *
- * This file is licensed under
- * the Creative Commons Attribution 3.0 Unported License 
- * <http://creativecommons.org/licenses/by/3.0/>
- *
+ * @author Timo Tijhof, 2011
+ * @since 0.1
  * @package Kribo
  */
-
-/**
- * This file declares all global functions in Kribo.
- */
-
 function kfLog( $msg ) {
 	echo '[' . date('r') . "] $msg\n";
 }

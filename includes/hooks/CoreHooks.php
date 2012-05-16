@@ -1,32 +1,20 @@
 <?php
 /**
- *
- * Created on April 13, 2011
- *
- * Copyright 2011 Krinkle <krinklemail@gmail.com>
- *
- * This file is licensed under
- * the Creative Commons Attribution 3.0 Unported License 
- * <http://creativecommons.org/licenses/by/3.0/>
- *
- * @package Kribo
- */
-
-/**
  * This file contains the class for core hooks.
  * Contains the command parser and an example hook
  * to learn from (eg. KriboCoreHooks::afterSendJoin).
  * These hooks are registered in DefaultConfig.php with $KriboConfig->hookRegistry.
  * Register yours in LocalConfig.php (after including the class file).
+ *
+ * @author Timo Tijhof, 2011
+ * @since 0.1
+ * @package Kribo
  */
-
-
 class KriboCoreHooks extends staticClass {
 
 	/* Direct hooks */
 
 	static function onReceive( $parsedLine, $irc ) {
-
 		// Server code ?
 		if ( is_numeric( $parsedLine['command'] ) ) {
 			self::onServerCode($parsedLine, $irc);
@@ -62,7 +50,6 @@ class KriboCoreHooks extends staticClass {
 	/* Helper functions */
 
 	static function onServerCode( $parsedLine, $irc ) {
-
 		$code = $parsedLine['command'];
 
 		switch ($code) {
@@ -73,7 +60,6 @@ class KriboCoreHooks extends staticClass {
 				$irc->sendNick( $irc->getAltNick() );
 				break;
 		}
-
 	}
 
 	static function commandParser( $parsedLine, $irc ) {
@@ -129,16 +115,12 @@ class KriboCoreHooks extends staticClass {
 				}
 			}
 		}
-
 	}
 
 	static function parseCommandPrefix( $prefix, $irc ) {
-
 		$prefix = str_replace( '$1', $irc->conf->userChatName, $prefix );
 		$prefix = str_replace( '$2', $irc->conf->userAuthID, $prefix );
 		$prefix = str_replace( '$3', $irc->getCurrentNick(), $prefix );
 		return $prefix;
-
 	}
-
 }
