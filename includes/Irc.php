@@ -65,19 +65,19 @@ class KriboIrc {
 		// Start read loop
 		while ( $rawline = @socket_read( $this->sock, 65000, PHP_NORMAL_READ ) ) {
 
-			// Ignore empty lines			
+			// Ignore empty lines
 			if ( in_array( $rawline, array( "\n", "\r", "\r\n" ) ) ) {
 				continue;
 			}
 
 			// Ping ? Pong!
 			$ponged = $this->ifPingThenPong( $rawline );
-	
+
 			// Not identified yet ?
 			if ( !$this->isIdentified ) {
 				$this->identify();
 			}
-	
+
 			// Autojoin only once
 			// Not untill MOTD is done
 			if ( !$this->hasAutojoined && strpos( $rawline, 'MOTD' ) ) {
@@ -105,7 +105,7 @@ class KriboIrc {
 			// No more tries and/or not a reason to reconnect.
 			} else {
 				kfDie();
-			}		
+			}
 		}
 
 	}
@@ -136,7 +136,7 @@ class KriboIrc {
 			$msg = str_replace( '$1', $this->conf->userAuthID, $msg );
 			$msg = str_replace( '$2', $this->conf->userAuthPassword, $msg );
 			$this->sendPrivmsg( $msg, $this->conf->userAuthService );
-			
+
 			}
 
 		$this->isIdentified = true;
@@ -154,7 +154,7 @@ class KriboIrc {
 
 	private function onReceive( $rawline ) {
 		$this->log( $rawline, 'receive' );
-		
+
 		$parsed = $this->parseIncomingRaw( $rawline );
 		$this->main->runHooksFor( 'onReceive', array( $parsed, $this ) );
 	}
@@ -236,7 +236,7 @@ class KriboIrc {
 		$this->main->runHooksFor( 'beforeSendNick', array( $newNick, $this ) );
 
 		$this->writeRaw( "NICK $newNick" );
-		
+
 		$this->currentNick = $newNick;
 	}
 
@@ -270,7 +270,7 @@ class KriboIrc {
 	/* Utilities (@public) */
 
 	public function getAltNick(){
-	
+
 		$current = $this->currentNick;
 		$alt = str_replace( '$1', $current, $this->conf->userAltNamePattern );
 		return $alt;
@@ -278,7 +278,7 @@ class KriboIrc {
 	}
 
 	public function getRealName(){
-	
+
 		$raw = $this->conf->userRealName;
 		$parsed = str_replace( '$1', $this->conf->version, $raw );
 		return $parsed;
@@ -306,12 +306,12 @@ class KriboIrc {
 	private function parseIncomingRaw( $rawline ) {
 		$parsed = array(
 			'rawline' => $rawline,
-	
+
 			// Basic parts
 			'prefix' => null,
 			'command' => null,
 			'params' => null,
-	
+
 			// More advanced parts
 			'senderType' => null, // 'server' or 'client'
 			'senderNick' => null,
@@ -320,48 +320,48 @@ class KriboIrc {
 			'paramsMiddle' => null,
 			'paramsTrailing' => null,
 		);
-	
+
 		/* Basic parts */
-	
+
 		// Validate (RFC 1459: Internet Relay Chat Protocol)
 		// [':' <prefix> <SPACE> ] <command> <params>
-	
+
 		$parts = explode( ' ', $rawline, 3 );
 
 		// ":<prefix> <command> <params>" ?
 		if ( isset( $parts[0] ) && substr( $parts[0], 0, 1 ) == ':'
 			&& isset( $parts[1] ) && isset( $parts[2] ) ) {
-	
+
 			// Prefix
 			$parsed['prefix'] = $parts[0];
-		
+
 			// Command
 			$parsed['command'] = $parts[1];
-		
+
 			// Params
 			$parsed['params'] = $parts[2];
-		
-		
+
+
 		// "<command> <params>" ?
 		} elseif ( isset( $parts[0] ) && substr( $parts[0], 0, 1 ) !== ':'
 			&& isset( $parts[1] ) && !isset( $parts[2] ) ) {
-	
+
 			// Prefix
 			$parsed['prefix'] = null;
-		
+
 			// Command
 			$parsed['command'] = $parts[0];
-		
+
 			// Params
 			$parsed['params'] = $parts[1];
-		
+
 		// Invalid
 		} else {
 			return false;
 		}
-	
+
 		/* More advanced parts */
-	
+
 		// Prefix (sender)
 		// - ":Krinkle!~Krinkle@wikimedia/Krinkle" (hostname cloak)
 		// - ":Foobar!~Foobar@cm12.34.56.78.dynamic.ziggo.nl" (unregistered, normal ip or hostname)
@@ -380,21 +380,21 @@ class KriboIrc {
 			$parsed['senderType'] = 'server';
 			$parsed['senderNick'] = substr( $parsed['prefix'], 1);
 		}
-	
+
 		// Params
 		$partsParams = explode( ':', $parsed['params'], 2 );
-		
+
 		$parsed['paramsMiddle'] = trim( $partsParams[0] ); // May end in a space
 		$parsed['paramsTrailing'] = isset($partsParams[1]) ? $partsParams[1] : '';
 
 		return $parsed;
 	}
-	
+
 	private function log( $msg = '', $action = null ) {
 		$action = is_null( $action ) ? '' : " [$action]";
 		return kfLog( '[' . __CLASS__ . "]$action $msg" );
 	}
-	
+
 	private function error( $msg = '', $context = '?' ) {
 		return kfLog( '[' . __CLASS__ . "] [ERROR] $context: $msg" );
 	}

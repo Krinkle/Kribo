@@ -1,59 +1,40 @@
 <?php
-/**
- * LocalConfig.php contains your personal configuration for the bot.
- */
 
+/* Server */
 
-/**
- * Server
- * -------------------------------------------------
- */
 $KriboConfig->serverHost = 'irc.freenode.net';
-$KriboConfig->autoJoinChannels = array( '#botwar' );
+$KriboConfig->autoJoinChannels = array(
+	'#botwar',
+);
 
 
-/**
- * User
- * -------------------------------------------------
- */
+/* User */
+
 $KriboConfig->userChatName = 'Kribo';
 
 
-/**
- * Authentication
- * -------------------------------------------------
- */
+/* Authentication */
+
 // NickServ login
-#$KriboConfig->userAuthID = 'MyAccount';
-#$KriboConfig->userAuthPassword = 'mypassword';
+$KriboConfig->userAuthID = 'MyAccount';
+$KriboConfig->userAuthPassword = 'mypassword';
 
 
-/**
- * Commands
- * -------------------------------------------------
- */
+/* Commands */
+
 $KriboConfig->commandPrefixDefault = '$3: ';
 
+/* Hooks */
 
-/**
- * Hooks
- * -------------------------------------------------
- */
 // Demo hook (sends "Hello #channelname!" message when the bot joins a channel)
 $KriboConfig->hookRegistry['afterSendJoin'][] = 'KriboCoreHooks::helloOnJoin';
 
 
-/**
- * Whitelist
- * -------------------------------------------------
- */
+/* Whitelist */
+
 #$KriboConfig->userWhitelist = array( 'yourgroupcloak/JohnDoe' );
 
 
-/**
- * Plugins
- * -------------------------------------------------
- */
-# Here be plugins!
-// require_once( $KriboDir . '/plugins/FooBar/FooBar.php' );
+/* Plugins */
 
+#require_once( $KriboDir . '/plugins/FooBar/FooBar.php' );

@@ -16,7 +16,7 @@ class KriboMain {
 
 		$this->config = $config;
 		$this->irc = new KriboIrc( $this, $config );
-	
+
 	}
 
 	public function runHooksFor( $id, $args ) {
@@ -29,7 +29,7 @@ class KriboMain {
 				if ( $return === false ) {
 					return false;
 				}
-			}		
+			}
 		}
 		return true;
 	}
