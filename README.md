@@ -54,7 +54,7 @@ If all of the next four are not null, then the bot will PRIVMSG `userAuthService
 
 ### Command registry
 
-* `commandRegistry`: This keeps track of all commands. Keys are the command names. Values are arrays with options. Check [HOOKS](https://github.com/Krinkle/ts-krinkle-Kribo/blob/master/HOOKS.md) for more info.
+* `commandRegistry`: This keeps track of all commands. Keys are the command names. Values are arrays with options. Check [HOOKS](./HOOKS.md) for more info.
 
 ### Hooks
 
@@ -70,24 +70,24 @@ $KriboConfig->hookRegistry['onReceive'][] = 'KriboCoreHooks::onReceive';
 
 ### Plugins
 
-Check out https://github.com/Krinkle/ts-krinkle-Kribo-plugins
+Check out https://github.com/Krinkle/Kribo-plugins
 
 ## FAQ
 1. _Where can I download Kribo?_
    <br>Get started right away with a git clone:
-   <br>`git clone https://github.com/Krinkle/ts-krinkle-Kribo.git`
-   <br>Or download the latest master as a ZIP from: https://github.com/Krinkle/ts-krinkle-Kribo/zipball/master
+   <br>`git clone https://github.com/Krinkle/Kribo.git`
+   <br>Or download the latest master as a ZIP from: https://github.com/Krinkle/Kribo/zipball/master
 
 1. _How do I install Kribo?_
    <br>Check [Installation](#installation).
 
 1. _Where can I get plugins?_
-   <br>I mainain a small stock at https://github.com/Krinkle/ts-krinkle-Kribo-plugins
+   <br>I mainain a small stock at https://github.com/Krinkle/Kribo-plugins
 
 1. _Where should I report X or request Y?_
    <br>If you encounter any problem, have feedback, suggestions, patches, feature
    requests etc. please enter in the Issue tracker:
-   https://github.com/Krinkle/ts-krinkle-Kribo/issues
+   https://github.com/Krinkle/Kribo/issues
 
 1. _Under what license is Kribo available?_
    <br>[Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/)

@@ -71,7 +71,7 @@ public static function beforeSendQuit( $msg, KriboIrc $irc );
 
 # Premade registries for common hooks
 
-Since adding commands that the bot responds too are likely the most common kind, there is a dedicated registry for that. You can hook into `onRecieve` directly. To see how that works, look at [CoreHooks.php](https://github.com/Krinkle/ts-krinkle-Kribo/blob/master/includes/hooks/CoreHooks.php). As you can see, we use that hook internally as well.
+Since adding commands that the bot responds too are likely the most common kind, there is a dedicated registry for that. You can hook into `onRecieve` directly. To see how that works, look at [CoreHooks.php](./includes/hooks/CoreHooks.php). As you can see, we use that hook internally as well.
 
 ## commandsRegistry
 ```php
