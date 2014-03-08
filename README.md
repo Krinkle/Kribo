@@ -1,4 +1,4 @@
-# Kribo
+# [![Build Status](https://travis-ci.org/Krinkle/Kribo.png?branch=master)](https://travis-ci.org/Krinkle/Kribo) Kribo
 _Krinkle IRC Bot_
 
 ## Introduction
