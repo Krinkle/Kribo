@@ -6,8 +6,7 @@
  * DO *NOT* EDIT ANYTHING HERE !!
  * OVERRIDE IN LocalConfig.php INSTEAD.
  *
- * Documentation can be found at https://wiki.toolserver.org/view/Kribo#Configuration
- */
+ * Documentation can be found at https://github.com/Krinkle/Kribo#configuration
 
 /**
  * Init
