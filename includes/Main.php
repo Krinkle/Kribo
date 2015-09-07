@@ -49,12 +49,12 @@ class KriboMain {
 		return true;
 	}
 
-	public function start(){
+	public function start() {
 		$this->irc->start();
 	}
 
-	public function endOfTrack(){
-		kfLog( __METHOD__ );
+	public function endOfTrack() {
+		kfDebugLog( __METHOD__ );
 		kfDie(1);
 	}
 

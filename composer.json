@@ -1,0 +1,13 @@
+{
+	"require": {
+		"php": ">=5.5"
+	},
+	"require-dev": {
+		"jakub-onderka/php-parallel-lint": "0.8.*"
+	},
+	"scripts": {
+		"test": [
+			"parallel-lint --exclude vendor ."
+		]
+	}
+}

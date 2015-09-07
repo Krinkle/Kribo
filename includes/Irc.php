@@ -392,10 +392,10 @@ class KriboIrc {
 
 	private function log( $msg = '', $action = null ) {
 		$action = is_null( $action ) ? '' : " [$action]";
-		return kfLog( '[' . __CLASS__ . "]$action $msg" );
+		return kfDebugLog( '[' . __CLASS__ . "]$action $msg" );
 	}
 
 	private function error( $msg = '', $context = '?' ) {
-		return kfLog( '[' . __CLASS__ . "] [ERROR] $context: $msg" );
+		return kfErrorLog( '[' . __CLASS__ . "] [ERROR] $context: $msg" );
 	}
 }

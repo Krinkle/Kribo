@@ -6,12 +6,22 @@
  * @since 0.1
  * @package Kribo
  */
-function kfLog( $msg ) {
+
+function kfDebugLog( $msg ) {
 	echo '[' . date('r') . "] $msg\n";
 }
 
+function kfErrorLog( $msg ) {
+	$msg = '[' . date('r') . "] $msg\n";
+	if ( defined( 'STDERR' ) ) {
+		fwrite( STDERR, $msg );
+	} else {
+		echo $msg;
+	}
+}
+
 function kfDie(){
-	kfLog( __FUNCTION__ );
+	kfDebugLog( __FUNCTION__ );
 	die(1);
 }
 
@@ -28,7 +38,7 @@ function kfStrHasLen( $var = null ) {
 
 /**
  * @param $data array: Data array with an irc response, as given by Kribo to the
- * command hook handlers.  
+ * command hook handlers.
  */
 function kfIsIrcDataSenderTrusted( $data ) {
 	global $KriboConfig;
